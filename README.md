@@ -1,7 +1,7 @@
 # WebAR
 A repo for playing around with web based AR using AR.js and AFrame
 
-![Sreenshot of web application](https://i.imgur.com/qf2LP9D.jpg)
+<img src="https://i.imgur.com/qf2LP9D.jpg" alt="Sreenshot of web application" width="200"/>
 
 ## Dependencies
 - **NodeJS/NPM** - used as the project's runtime environment. Note that `/node_modules` is in this repo's .gitignore
