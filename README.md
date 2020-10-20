@@ -1,7 +1,11 @@
 # WebAR
 A repo for playing around with web based AR using AR.js and AFrame
 
+<img src="https://i.imgur.com/qf2LP9D.jpg" alt="Sreenshot of web application" width="200"/>
+
 ## Dependencies
+- **AR.js** - powers the frontend AR. Great open source library found [HERE](https://github.com/AR-js-org/AR.js)
+- **AFrame** - enables image tracking. More info found [HERE](https://aframe.io/)
 - **NodeJS/NPM** - used as the project's runtime environment. Note that `/node_modules` is in this repo's .gitignore
 - **ExpressJS** - install with npm via your terminal `npm install express --save`
 
