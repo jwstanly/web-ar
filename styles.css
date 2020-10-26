@@ -1,0 +1,38 @@
+.arjs-loader {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Helvetica", "Arial", sans-serif;
+}
+
+.arjs-loader div {
+    text-align: center;
+    font-size: 1.25em;
+    color: white;
+}
+
+.loading-logo {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50%;
+    height: auto;
+}
+
+.navbar-logo {
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    width: 25%;
+    height: auto;
+}
+
+.navbar {
+    z-index: 2;
+}
