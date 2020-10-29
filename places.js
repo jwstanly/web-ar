@@ -3,6 +3,14 @@ const loadPlaces = function(coords) {
     const method = "dapi";
 
     const PLACES = [{
+            name: "TIAA Bank",
+            location: {
+                lat: 30.327423, // add here latitude if using static data
+                lng: -81.662075, // add here longitude if using static data
+            },
+            model: "./gltfModels/tbc.glb",
+        },
+        {
             name: "Bank of America",
             location: {
                 lat: 30.326721, // add here latitude if using static data
@@ -17,14 +25,6 @@ const loadPlaces = function(coords) {
                 lng: -81.65934, // add here longitude if using static data
             },
             model: "./gltfModels/wfc.glb",
-        },
-        {
-            name: "TIAA Bank",
-            location: {
-                lat: 30.327423, // add here latitude if using static data
-                lng: -81.662075, // add here longitude if using static data
-            },
-            model: "./gltfModels/tbc.glb",
         },
     ];
 
