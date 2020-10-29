@@ -1,6 +1,6 @@
 const loadPlaces = function(coords) {
     // COMMENT FOLLOWING LINE IF YOU WANT TO USE STATIC DATA AND ADD COORDINATES IN THE FOLLOWING 'PLACES' ARRAY
-    const method = "api";
+    const method = "dapi";
 
     const PLACES = [{
             name: "Bank of America",
@@ -8,6 +8,7 @@ const loadPlaces = function(coords) {
                 lat: 30.326721, // add here latitude if using static data
                 lng: -81.659542, // add here longitude if using static data
             },
+            model: "./gltfModels/boat.glb",
         },
         {
             name: "Wells Fargo",
@@ -15,6 +16,7 @@ const loadPlaces = function(coords) {
                 lat: 30.326384, // add here latitude if using static data
                 lng: -81.65934, // add here longitude if using static data
             },
+            model: "./gltfModels/wfc.glb",
         },
         {
             name: "TIAA Bank",
@@ -22,14 +24,15 @@ const loadPlaces = function(coords) {
                 lat: 30.327423, // add here latitude if using static data
                 lng: -81.662075, // add here longitude if using static data
             },
+            model: "./gltfModels/tbc.glb",
         },
     ];
 
-    if (method === "api") {
+    /*if (method === "api") {
         return loadPlaceFromAPIs(coords);
-    }
+    }*/
 
-    return PLACES;
+    return Promise.resolve(PLACES);
 };
 
 // getting places from REST APIs
@@ -76,22 +79,23 @@ window.onload = () => {
                     const longitude = place.location.lng;
 
                     // add place name
-                    const text = document.createElement("a-link");
-                    text.setAttribute(
+                    const entity = document.createElement("a-entity");
+                    entity.setAttribute(
                         "gps-entity-place",
                         `latitude: ${latitude}; longitude: ${longitude};`
                     );
-                    text.setAttribute("title", place.name);
-                    text.setAttribute("href", "http://www.example.com/");
-                    text.setAttribute("scale", "13 13 13");
+                    entity.setAttribute("scale", "13 13 13");
+                    entity.setAttribute("rotation", "0 180 0");
+                    entity.setAttribute("gltf-model", place.model);
+                    entity.setAttribute("animation-mixer", "");
 
-                    text.addEventListener("loaded", () => {
+                    entity.addEventListener("loaded", () => {
                         window.dispatchEvent(
                             new CustomEvent("gps-entity-place-loaded")
                         );
                     });
 
-                    scene.appendChild(text);
+                    scene.appendChild(entity);
                 });
             });
         },
