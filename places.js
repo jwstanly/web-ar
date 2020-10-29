@@ -1,14 +1,29 @@
 const loadPlaces = function(coords) {
     // COMMENT FOLLOWING LINE IF YOU WANT TO USE STATIC DATA AND ADD COORDINATES IN THE FOLLOWING 'PLACES' ARRAY
-    const method = "api";
+    //const method = "api";
 
     const PLACES = [{
-        name: "Your place name",
-        location: {
-            lat: 0, // add here latitude if using static data
-            lng: 0, // add here longitude if using static data
+            name: "Bank of America",
+            location: {
+                lat: 30.326721, // add here latitude if using static data
+                lng: -81.659542, // add here longitude if using static data
+            },
         },
-    }, ];
+        {
+            name: "Wells Fargo",
+            location: {
+                lat: 30.326384, // add here latitude if using static data
+                lng: -81.65934, // add here longitude if using static data
+            },
+        },
+        {
+            name: "TIAA Bank",
+            location: {
+                lat: 30.327423, // add here latitude if using static data
+                lng: -81.662075, // add here longitude if using static data
+            },
+        },
+    ];
 
     if (method === "api") {
         return loadPlaceFromAPIs(coords);
