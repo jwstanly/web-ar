@@ -1,9 +1,9 @@
 const loadPlaces = function(coords) {
     const PLACES = [{
-            name: "AC Vent - Testing Site",
+            name: "Parking Lot - Testing Site",
             location: {
-                lat: 30.326806,
-                lng: -81.668448,
+                lat: 30.326464,
+                lng: -81.667776,
             },
             model: "./gltfModels/tbc2.glb",
         },
@@ -58,6 +58,8 @@ window.onload = () => {
                     entity.setAttribute("rotation", "0 180 0");
                     entity.setAttribute("gltf-model", place.model);
                     entity.setAttribute("animation-mixer", "");
+                    //attribute to make objects always face camera
+                    entity.setAttribute("look-at", "[gps-camera]");
 
                     entity.addEventListener("loaded", () => {
                         window.dispatchEvent(
