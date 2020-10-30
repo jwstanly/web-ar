@@ -5,6 +5,9 @@ const loadPlaces = function(coords) {
                 lat: 30.32752,
                 lng: -81.66917,
             },
+            scale: "3",
+            rotation: "0 180 0",
+            yPposition: "0",
             model: "./gltfModels/wfc.glb",
         },
         {
@@ -13,6 +16,9 @@ const loadPlaces = function(coords) {
                 lat: 30.326464,
                 lng: -81.667776,
             },
+            scale: "13",
+            rotation: "0 180 0",
+            yPposition: "0",
             model: "./gltfModels/tbc2.glb",
         },
         {
@@ -21,6 +27,9 @@ const loadPlaces = function(coords) {
                 lat: 30.327423,
                 lng: -81.662075,
             },
+            scale: "13",
+            rotation: "0 180 0",
+            yPposition: "0",
             model: "./gltfModels/tbc.glb",
         },
         {
@@ -29,6 +38,9 @@ const loadPlaces = function(coords) {
                 lat: 30.326721,
                 lng: -81.659542,
             },
+            scale: "13",
+            rotation: "0 180 0",
+            yPposition: "0",
             model: "./gltfModels/boat.glb",
         },
         {
@@ -37,6 +49,9 @@ const loadPlaces = function(coords) {
                 lat: 30.326384,
                 lng: -81.65934,
             },
+            scale: "13",
+            rotation: "0 180 0",
+            yPposition: "0",
             model: "./gltfModels/wfc.glb",
         },
     ];
@@ -53,8 +68,24 @@ window.onload = () => {
             // than use it to load places from function above
             loadPlaces(position.coords).then((places) => {
                 places.forEach((place) => {
+                    // argument hadeling
                     const latitude = place.location.lat;
                     const longitude = place.location.lng;
+                    // if just one scale number, apply evenly to all 3 planes
+                    const scale =
+                        place.scale.split(" ").length == 1 ?
+                        place.scale +
+                        " " +
+                        place.scale +
+                        " " +
+                        place.scale :
+                        place.scale;
+                    // create default rotation value of "0 0 0"
+                    const rotation =
+                        "rotation" in place ? place.rotation : "0 0 0";
+                    // add 0 for x and z (x and z are artifacts of unused AFrame interface)
+                    const position = "0 " + place.yPposition + " 0";
+                    const model = place.model;
 
                     // create AFrame entity
                     const entity = document.createElement("a-entity");
@@ -62,9 +93,10 @@ window.onload = () => {
                         "gps-entity-place",
                         `latitude: ${latitude}; longitude: ${longitude};`
                     );
-                    entity.setAttribute("scale", "13 13 13");
-                    entity.setAttribute("rotation", "0 180 0");
-                    entity.setAttribute("gltf-model", place.model);
+                    entity.setAttribute("scale", scale);
+                    entity.setAttribute("rotation", rotation);
+                    entity.setAttribute("position", position);
+                    entity.setAttribute("gltf-model", model);
                     entity.setAttribute("animation-mixer", "");
                     //attribute to make objects always face camera
                     entity.setAttribute("look-at", "[gps-camera]");
