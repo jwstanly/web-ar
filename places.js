@@ -1,70 +1,40 @@
 const loadPlaces = function(coords) {
-    // COMMENT FOLLOWING LINE IF YOU WANT TO USE STATIC DATA AND ADD COORDINATES IN THE FOLLOWING 'PLACES' ARRAY
-    const method = "dapi";
-
     const PLACES = [{
+            name: "AC Vent - Testing Site",
+            location: {
+                lat: 30.326806,
+                lng: -81.668448,
+            },
+            model: "./gltfModels/tbc2.glb",
+        },
+        {
             name: "TIAA Bank",
             location: {
-                lat: 30.327423, // add here latitude if using static data
-                lng: -81.662075, // add here longitude if using static data
+                lat: 30.327423,
+                lng: -81.662075,
             },
             model: "./gltfModels/tbc.glb",
         },
         {
             name: "Bank of America",
             location: {
-                lat: 30.326721, // add here latitude if using static data
-                lng: -81.659542, // add here longitude if using static data
+                lat: 30.326721,
+                lng: -81.659542,
             },
             model: "./gltfModels/boat.glb",
         },
         {
             name: "Wells Fargo",
             location: {
-                lat: 30.326384, // add here latitude if using static data
-                lng: -81.65934, // add here longitude if using static data
+                lat: 30.326384,
+                lng: -81.65934,
             },
             model: "./gltfModels/wfc.glb",
         },
     ];
 
-    /*if (method === "api") {
-        return loadPlaceFromAPIs(coords);
-    }*/
-
     return Promise.resolve(PLACES);
 };
-
-// getting places from REST APIs
-function loadPlaceFromAPIs(position) {
-    const params = {
-        radius: 300, // search places not farther than this value (in meters)
-        clientId: "HZIJGI4COHQ4AI45QXKCDFJWFJ1SFHYDFCCWKPIJDWHLVQVZ",
-        clientSecret: "GYRKWWJMO2WK3KIRWBXIN5FQAWXTVFIK2QM4VQWNQ4TRAKWH",
-        version: "20300101", // foursquare versioning, required but unuseful for this demo
-    };
-
-    // CORS Proxy to avoid CORS problems
-    const corsProxy = "https://cors-anywhere.herokuapp.com/";
-
-    // Foursquare API
-    const endpoint = `${corsProxy}https://api.foursquare.com/v2/venues/search?intent=checkin
-        &ll=${position.latitude},${position.longitude}
-        &radius=${params.radius}
-        &client_id=${params.clientId}
-        &client_secret=${params.clientSecret}
-        &limit=15
-        &v=${params.version}`;
-    return fetch(endpoint)
-        .then((res) => {
-            return res.json().then((resp) => {
-                return resp.response.venues;
-            });
-        })
-        .catch((err) => {
-            console.error("Error with places API", err);
-        });
-}
 
 window.onload = () => {
     const scene = document.querySelector("a-scene");
@@ -72,13 +42,13 @@ window.onload = () => {
     // first get current user location
     return navigator.geolocation.getCurrentPosition(
         function(position) {
-            // than use it to load from remote APIs some places nearby
+            // than use it to load places from function above
             loadPlaces(position.coords).then((places) => {
                 places.forEach((place) => {
                     const latitude = place.location.lat;
                     const longitude = place.location.lng;
 
-                    // add place name
+                    // create AFrame entity
                     const entity = document.createElement("a-entity");
                     entity.setAttribute(
                         "gps-entity-place",
