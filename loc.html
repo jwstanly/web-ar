@@ -14,30 +14,15 @@
     </script>
 </head>
 
+<link rel="stylesheet" href="../../src/stylesheets/index.css" />
+
+<!-- Dynamically add places from Javascript -->
+<script src="./places.js"></script>
+
 <body style="margin: 0; overflow: hidden">
-    <a-scene vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;">
-        <a-entity id="boat" gltf-model="./gltfModels/boat.glb" rotation="0 90 0" scale="0.15 0.15 0.15" gps-entity-place="longitude: -81.659542; latitude: 30.326721;" animation-mixer />
-        <a-entity id="wfc" gltf-model="./gltfModels/wfc.glb" rotation="0 90 0" scale="0.15 0.15 0.15" gps-entity-place="longitude: -81.659340; latitude: 30.326384;" animation-mixer />
-        <a-entity id="tbc" gltf-model="./gltfModels/tbc.glb" rotation="0 90 0" scale="0.15 0.15 0.15" gps-entity-place="longitude: -81.662075; latitude: 30.327423;" animation-mixer />
-        <a-camera gps-camera rotation-reader></a-camera>
+    <a-scene cursor="rayOrigin: mouse; fuse: true; fuseTimeout: 0;" raycaster="objects: [gps-entity-place];" vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;">
+        <a-camera gps-camera rotation-reader> </a-camera>
     </a-scene>
-    <!--<script>
-        const distanceMsg = document
-            .querySelector("[gps-entity-place]")
-            .getAttribute("distance");
-        console.log("Distance to point: ");
-        console.log(distanceMsg);
-    </script>-->
 </body>
 
 </html>
-
-<!-- 
-	Prime Osborn: "longitude: 30.327786; latitude: -81.670887;"
-	Your Cubicle: "longitude: 30.327177; latitude: -81.669151;"
-	Loft Sign: "longitude: 30.327520; latitude: -81.669170;"
-	AC Vent: "longitude: 30.326804; latitude: -81.662063;"
-	TIAA Bank Building: "longitude:  -81.662075; latitude: 30.327423;"
-	Bank of America Building: "longitude: -81.659542; latitude: 30.326721;"
-	Wells Fargo Building: "longitude: -81.659340; latitude: 30.326384;"
--->

@@ -1,5 +1,13 @@
 const loadPlaces = function(coords) {
     const PLACES = [{
+            name: "Lofts Sign - Testing Site",
+            location: {
+                lat: 30.32752,
+                lng: -81.66917,
+            },
+            model: "./gltfModels/wfc.glb",
+        },
+        {
             name: "Parking Lot - Testing Site",
             location: {
                 lat: 30.326464,
